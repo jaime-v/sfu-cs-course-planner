@@ -1,7 +1,7 @@
 # Local Setup
 
-> The application isn't scaffolded yet. This guide will be updated as the
-> frontend (#18), backend (#10), database (#11) and Docker (#35) setup are added.
+> The frontend scaffold is available. The backend, database and Docker setup
+> will be documented as issues #10, #11 and #35 are completed.
 
 ## Prerequisites
 
@@ -9,6 +9,8 @@
 - Node.js and npm
 - Python 3
 - Docker Desktop or Docker Engine with Docker Compose
+
+The frontend uses Vite, which requires Node.js 20.19+ or 22.12+, and npm.
 
 ## Get the code
 
@@ -21,3 +23,17 @@
    git remote add upstream https://github.com/sfuosdev/sfu-cs-course-planner.git
    git remote -v
    ```
+
+## Run the frontend
+
+From the repository root:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open the local URL printed by Vite (usually `http://localhost:5173`). To create
+and preview a production build, run `npm run build` and then `npm run preview`
+from `frontend/`.
