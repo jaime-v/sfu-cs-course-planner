@@ -2,6 +2,16 @@
   min-height: 100vh;
 }
 
+.container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.search-interface {
+  width: 100%;
+  padding: 64px 32px;
+}
+
 .welcome {
   box-sizing: border-box;
   display: flex;

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useCourses } from "../../contexts/CourseContext";
 import type { Course } from "../../types/course";
 import { CourseSearchCard } from "./CourseSearchCard/CourseSearchCard";
+import styles from "./CourseSearch.module.css";
 
 interface CourseSearchProps {
   onSelect: (course: Course) => void;
@@ -10,11 +11,20 @@ interface CourseSearchProps {
 export const CourseSearch = ({ onSelect }: CourseSearchProps) => {
   const { allCourses, isLoading, error } = useCourses();
   const [searchQuery, setSearchQuery] = useState<string>("");
+
   if (isLoading) {
-    return <h1>LOADING</h1>;
+    return (
+      <section className={styles.container}>
+        <input className={styles.input} disabled placeholder="Loading..." />
+      </section>
+    );
   }
   if (error) {
-    return <h1>{error}</h1>;
+    return (
+      <section className={styles.container}>
+        <div className={styles.message}>{error}</div>
+      </section>
+    );
   }
 
   const normalizedSearchQuery = searchQuery.trim().toLowerCase();
@@ -31,20 +41,23 @@ export const CourseSearch = ({ onSelect }: CourseSearchProps) => {
         });
 
   return (
-    <section>
-      <input
-        type="searchQuery"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Search courses..."
-      />
+    <section className={styles.container}>
+      <form>
+        <input
+          type="searchQuery"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search courses..."
+          className={styles.input}
+        />
+      </form>
 
       {normalizedSearchQuery === "" ? (
-        <p>Start typing to search.</p>
+        <p className={styles.message}>Start typing to search.</p>
       ) : filteredCourses.length === 0 ? (
-        <p>No courses match the search.</p>
+        <p className={styles.message}>No courses match the search.</p>
       ) : (
-        <div>
+        <div className={styles.results}>
           {filteredCourses.map((course) => {
             return (
               <CourseSearchCard

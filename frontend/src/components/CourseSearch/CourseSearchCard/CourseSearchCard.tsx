@@ -1,5 +1,5 @@
 import type { Course } from "../../../types/course";
-
+import styles from "./CourseSearchCard.module.css";
 interface CourseSearchCardProps {
   course: Course;
   onSelect: (course: Course) => void;
@@ -10,12 +10,13 @@ export const CourseSearchCard = ({
   onSelect,
 }: CourseSearchCardProps) => {
   return (
-    <div>
-      <h3>{course.courseCode}</h3>
-      <p>{course.title}</p>
-      <p>({course.credits})</p>
+    <div className={styles.card}>
+      <h3 className={styles.code}>{course.courseCode}</h3>
+      <p className={styles.title}>{course.title}</p>
+      <p className={styles.credits}>({course.credits})</p>
       <button
         type="button"
+        className={styles.button}
         onClick={() => {
           onSelect(course);
         }}
