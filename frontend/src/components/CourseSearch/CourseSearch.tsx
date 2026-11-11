@@ -42,7 +42,11 @@ export const CourseSearch = ({ onSelect }: CourseSearchProps) => {
 
   return (
     <section className={styles.container}>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <input
           type="searchQuery"
           value={searchQuery}
