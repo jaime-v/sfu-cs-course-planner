@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useCourses } from "../../contexts/CourseContext";
 import type { Course } from "../../types/course";
+import { CourseSearchCard } from "./CourseSearchCard/CourseSearchCard";
 
 interface CourseSearchProps {
   onSelect: (course: Course) => void;
@@ -46,9 +47,11 @@ export const CourseSearch = ({ onSelect }: CourseSearchProps) => {
         <div>
           {filteredCourses.map((course) => {
             return (
-              <button key={course.id} onClick={() => onSelect(course)}>
-                {course.courseCode}
-              </button>
+              <CourseSearchCard
+                key={course.id}
+                course={course}
+                onSelect={onSelect}
+              />
             );
           })}
         </div>
